@@ -21,7 +21,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       uint8_t temp_mod = get_mods();
       uint8_t temp_osm = get_oneshot_mods();
-      clear_mods();
+      unregister_mods(temp_mod);
       clear_oneshot_mods();
 
       if ((temp_mod | temp_osm) & MOD_MASK_SHIFT) {
@@ -29,7 +29,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         tap_code16(LSFT(LALT(KC_8)));
       }
-      set_mods(temp_mod);
+      register_mods(temp_mod);
       return false;
     }
     break;
@@ -39,7 +39,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       uint8_t temp_mod = get_mods();
       uint8_t temp_osm = get_oneshot_mods();
-      clear_mods();
+      unregister_mods(temp_mod);
       clear_oneshot_mods();
 
       if ((temp_mod | temp_osm) & MOD_MASK_SHIFT) {
@@ -47,7 +47,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         tap_code16(LSFT(LALT(KC_9)));
       }
-      set_mods(temp_mod);
+      register_mods(temp_mod);
       return false;
     }
     break;
@@ -58,7 +58,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       uint8_t temp_mod = get_mods();
       uint8_t temp_osm = get_oneshot_mods();
-      clear_mods();
+      unregister_mods(temp_mod);
       clear_oneshot_mods();
 
       if ((temp_mod | temp_osm) & MOD_MASK_SHIFT) {
@@ -68,7 +68,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code16(LALT(NO_QUOT));
         tap_code(KC_SPC);
       }
-      set_mods(temp_mod);
+      register_mods(temp_mod);
       return false;
     }
     break;
@@ -78,7 +78,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
       uint8_t temp_mod = get_mods();
       uint8_t temp_osm = get_oneshot_mods();
-      clear_mods();
+      unregister_mods(temp_mod);
       clear_oneshot_mods();
       SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP);
 #ifndef FLASH_BOOTLOADER
@@ -99,7 +99,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(" -j8 --output-sync");
       }
       SEND_STRING(SS_TAP(X_ENTER));
-      set_mods(temp_mod);
+      register_mods(temp_mod);
       return false;
     }
     break;
