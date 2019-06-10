@@ -103,6 +103,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
     break;
+  // Creates a key that acts like , but types a < if combined with alt on a
+  // Swedish version of Mac OS. Note that this requires that the keyboard is set
+  // to ISO in the keyboard settings pane. Otherwise it appears that the NUBS
+  // key is incorrectly interpreted as another key.
+  case M_LBRC:
+    if (record->event.pressed) {
+      uint8_t temp_mod = get_mods();
+      uint8_t temp_osm = get_oneshot_mods();
+
+      if ((temp_mod | temp_osm) & MOD_MASK_ALT) {
+        unregister_mods(temp_mod);
+        clear_oneshot_mods();
+        tap_code(KC_NUBS);
+        register_mods(temp_mod);
+      } else {
+        tap_code(KC_COMM);
+      }
+      return false;
+    }
+    break;
+  // Creates a key that acts like . but types a > if combined with alt on a
+  // Swedish version of Mac OS. Note that this requires that the keyboard is set
+  // to ISO in the keyboard settings pane. Otherwise it appears that the NUBS
+  // key is incorrectly interpreted as another key.
+  case M_RBRC:
+    if (record->event.pressed) {
+      uint8_t temp_mod = get_mods();
+      uint8_t temp_osm = get_oneshot_mods();
+
+      if ((temp_mod | temp_osm) & MOD_MASK_ALT) {
+        unregister_mods(temp_mod);
+        clear_oneshot_mods();
+        tap_code16(LSFT(KC_NUBS));
+        register_mods(temp_mod);
+      } else {
+        tap_code(KC_DOT);
+      }
+      return false;
+    }
+    break;
   }
   return process_record_keymap(keycode, record);
 }

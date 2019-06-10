@@ -11,6 +11,7 @@ enum custom_keycodes {
   M_RCBR,
   M_PIPE,
   M_CIRC,
-  M_MAKE,
+  M_LBRC,
+  M_RBRC,
   KEYMAP_SAFE_RANGE // use "KEYMAP_SAFE_RANGE" for keymap specific codes
 };
