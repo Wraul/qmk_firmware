@@ -13,5 +13,9 @@ enum custom_keycodes {
   M_CIRC,
   M_LBRC,
   M_RBRC,
-  KEYMAP_SAFE_RANGE // use "KEYMAP_SAFE_RANGE" for keymap specific codes
+  KEYMAP_SAFE_RANGE  // use "KEYMAP_SAFE_RANGE" for keymap specific codes
 };
+
+// Swap space in Mac OS
+#define W_LSPC LCTL(KC_LEFT)
+#define W_RSPC LCTL(KC_RGHT)
