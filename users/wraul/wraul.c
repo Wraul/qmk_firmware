@@ -138,8 +138,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         // Creates a key that acts like , but types a < if combined with alt on a
         // Swedish version of Mac OS. Note that this requires that the keyboard is set
-        // to ISO in the keyboard settings pane. Otherwise it appears that the NUBS
-        // key is incorrectly interpreted as another key.
+        // to ANSI in the keyboard settings pane. As this appears to cause GRV to be
+        // interpreted as NUBS
         case M_LBRC:
             if (record->event.pressed) {
                 uint8_t temp_mod = get_mods();
@@ -148,7 +148,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if ((temp_mod | temp_osm) & MOD_MASK_ALT) {
                     unregister_mods(temp_mod);
                     clear_oneshot_mods();
-                    tap_code(KC_NUBS);
+                    tap_code(KC_GRV);
                     register_mods(temp_mod);
                 } else {
                     tap_code(KC_COMM);
@@ -158,8 +158,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         // Creates a key that acts like . but types a > if combined with alt on a
         // Swedish version of Mac OS. Note that this requires that the keyboard is set
-        // to ISO in the keyboard settings pane. Otherwise it appears that the NUBS
-        // key is incorrectly interpreted as another key.
+        // to ANSI in the keyboard settings pane. As this appears to cause GRV to be
+        // interpreted as NUBS
         case M_RBRC:
             if (record->event.pressed) {
                 uint8_t temp_mod = get_mods();
@@ -168,7 +168,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if ((temp_mod | temp_osm) & MOD_MASK_ALT) {
                     unregister_mods(temp_mod);
                     clear_oneshot_mods();
-                    tap_code16(LSFT(KC_NUBS));
+                    tap_code16(LSFT(KC_GRV));
                     register_mods(temp_mod);
                 } else {
                     tap_code(KC_DOT);
