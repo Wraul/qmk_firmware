@@ -95,10 +95,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 clear_oneshot_mods();
 
                 if ((temp_mod | temp_osm) & MOD_MASK_SHIFT) {
-                    tap_code16(LSFT(NO_ACUT));
+                    tap_code16(LSFT(SE_ACUT));
                     tap_code(KC_SPC);
                 } else {
-                    tap_code16(LALT(NO_QUOT));
+                    tap_code16(LALT(SE_QUOT));
                     tap_code(KC_SPC);
                 }
                 register_mods(temp_mod);
