@@ -84,6 +84,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        // Creates a key that acts like ' but types a | if combined with alt on a
+        // Swedish version of Windows.
+        case M_PIPE_W:
+            if (record->event.pressed) {
+                uint8_t temp_mod = get_mods();
+                uint8_t temp_osm = get_oneshot_mods();
+
+                if ((temp_mod | temp_osm) & MOD_MASK_ALT) {
+                    unregister_mods(temp_mod);
+                    clear_oneshot_mods();
+                    tap_code16(SE_PIPE);
+                    register_mods(temp_mod);
+                } else {
+                    tap_code(SE_QUOT);
+                }
+                return false;
+            }
+            break;
         // Makes it easier to type ~ and ` on a Swedish version of Mac OS.
         // Types a ~ followed by a space to take us out of the combine character mode.
         // If combined with a shift it does the same but prints a `.
@@ -172,6 +190,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     register_mods(temp_mod);
                 } else {
                     tap_code(KC_DOT);
+                }
+                return false;
+            }
+            break;
+        // Creates a key that acts like ' but types a | if combined with alt on a
+        // Swedish version of Mac OS.
+        case M_PIPE:
+            if (record->event.pressed) {
+                uint8_t temp_mod = get_mods();
+                uint8_t temp_osm = get_oneshot_mods();
+
+                if ((temp_mod | temp_osm) & MOD_MASK_ALT) {
+                    unregister_mods(temp_mod);
+                    clear_oneshot_mods();
+                    tap_code16(LALT(SE_7));
+                    register_mods(temp_mod);
+                } else {
+                    tap_code(SE_QUOT);
                 }
                 return false;
             }

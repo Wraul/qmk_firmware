@@ -12,6 +12,7 @@ enum custom_keycodes {
     M_LCBR_W,
     M_RCBR_W,
     M_PIPE,
+    M_PIPE_W,
     M_CIRC,
     M_LBRC,
     M_RBRC,
