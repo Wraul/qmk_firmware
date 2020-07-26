@@ -158,7 +158,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Swedish version of Mac OS. Note that this requires that the keyboard is set
         // to ANSI in the keyboard settings pane. As this appears to cause GRV to be
         // interpreted as NUBS
-        case M_LBRC:
+        case M_LABK:
             if (record->event.pressed) {
                 uint8_t temp_mod = get_mods();
                 uint8_t temp_osm = get_oneshot_mods();
@@ -169,7 +169,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     tap_code(KC_GRV);
                     register_mods(temp_mod);
                 } else {
-                    tap_code(KC_COMM);
+                    tap_code(SE_COMM);
                 }
                 return false;
             }
@@ -178,7 +178,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Swedish version of Mac OS. Note that this requires that the keyboard is set
         // to ANSI in the keyboard settings pane. As this appears to cause GRV to be
         // interpreted as NUBS
-        case M_RBRC:
+        case M_RABK:
             if (record->event.pressed) {
                 uint8_t temp_mod = get_mods();
                 uint8_t temp_osm = get_oneshot_mods();
@@ -189,7 +189,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     tap_code16(LSFT(KC_GRV));
                     register_mods(temp_mod);
                 } else {
-                    tap_code(KC_DOT);
+                    tap_code(SE_DOT);
                 }
                 return false;
             }
